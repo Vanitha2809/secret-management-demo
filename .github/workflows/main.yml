@@ -1,0 +1,17 @@
+name: Secret Management Automation
+
+on: [push]
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Run Python Script with Secrets
+      env:
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASS: ${{ secrets.DB_PASS }}
+      run: python app.py
